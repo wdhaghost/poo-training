@@ -1,33 +1,20 @@
 <?php
 namespace App\Objects;
+spl_autoload_register();
+use App\Objects;
 
+class Teacher extends Person {
 
-
-class Teacher {
-
-    public string $firstname;
-    public string $lastname;
+    
     public array $listOfCourse=[];
     public string $school;
     public function __construct(string $firstname,string $lastname,string $school="",array $listOfCourse=[])
     {
-        $this->firstname=$firstname;
-        $this->lastname=$lastname;
+        parent::__construct( $firstname, $lastname, $school);
         $this->listOfCourse=$listOfCourse;
-        $this->school=$school;
+        
     }
-    public function getFirstName():string{
-        return $this->firstname;
-    }
-    public function setFirstName($firstname):void{
-         $this->firstname = $firstname;
-    }
-    public function getLastname():string{
-        return $this->lastname;
-    }
-    public function setLastName($firstname):void{
-        $this->firstname = $firstname;
-   }
+    
     public function getSchool() :string{
         return $this->school;
     }
