@@ -36,7 +36,21 @@
                 Créer 2 professeurs différents.
             </p>
             <div class="exercice-sandbox">
-                
+                <?php
+                function preVarDump($value){
+                    echo "<pre>";
+                    var_dump($value);
+                    echo "</pre>";
+                }
+                spl_autoload_register();
+
+                use App\Objects\Teacher;
+
+                $gyro= new Teacher("Gyro","Zepelli");
+                $johnny= new Teacher("Johnny","Joestar");
+                PreVarDump($gyro);
+                PreVarDump($johnny);
+                ?>
             </div>
         </section>
         
@@ -52,11 +66,16 @@
                 Afficher les écoles des 2 professeurs.
             </p>
             <div class="exercice-sandbox">
-                
+                <?php
+                   $gyro->setSchool("STB School");
+                   $johnny->setSchool("Wheelchair School");
+                   echo $gyro->getSchool()."<br>";
+                   echo $johnny->getSchool();
+                ?>
+        
             </div>
         </section>
-        
-        
+                
         <!-- QUESTION 3 -->
         <section class="exercice">
             <h2 class="exercice-ttl">Question 3</h2>
@@ -66,7 +85,19 @@
                 Tester l'ajout, la suppression et l'affichage sur chacun des profs.
             </p>
             <div class="exercice-sandbox">
-                
+            <?php
+                   $johnny->addCourse("jockey");
+                   $johnny->addCourse("how to get Shot 101");
+                   $johnny->addCourse("Stand fight 101");
+                   echo $johnny->getListOfCourse()."<br>";
+                   $johnny->removeCourse("jockey");
+                   echo $johnny->getListOfCourse()."<br>";
+                   $gyro->addCourse("infinite swag");
+                   $gyro->addCourse("infinite rotation");
+                   echo $gyro->getListOfCourse()."<br>";
+                   $gyro->removeCourse("infinite swag");
+                   echo $gyro->getListOfCourse()."<br>";
+                ?>
             </div>
         </section>
 
@@ -81,7 +112,10 @@
                 Afficher la phrase de présentation des 2 profs.
             </p>
             <div class="exercice-sandbox">
-                
+                <?php
+                echo $gyro->presentYourself()."<br>";
+                echo $johnny->presentYourself();
+                ?>
             </div>
         </section>
 

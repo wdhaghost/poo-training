@@ -36,7 +36,23 @@
                 Créer 2 étudiants différents.
             </p>
             <div class="exercice-sandbox">
-                
+                <?php
+                function preVarDump($value){
+                    echo "<pre>";
+                    var_dump($value);
+                    echo "</pre>";
+
+                }
+                spl_autoload_register();
+
+                use App\Objects\Student;
+
+                    $jotaro= new Student("Jotaro","Kujo",new DateTime("1995-12-07"),"Harvard","master");
+                    $dio= new Student("Dio","Brando",new DateTime("1997-10-03"),"Schuman","BTS");
+                   preVarDump($dio);
+                   preVarDump($jotaro);
+                    
+                ?>
             </div>
         </section>
         
@@ -49,7 +65,13 @@
                 Modifier le niveau scolaire des 2 élèves et les afficher.
             </p>
             <div class="exercice-sandbox">
-                
+                <?php
+                $jotaro->setCourse("lycéen");
+                $dio->setCourse("lycéen");
+                echo $dio->getCourse();
+                echo"<br>" ;
+                echo $jotaro->getCourse();
+                ?>
             </div>
         </section>
         
@@ -62,7 +84,10 @@
                 Mettez à jour l'instanciation des 2 élèves et afficher leur date de naissance.
             </p>
             <div class="exercice-sandbox">
-                
+                <?php
+                preVarDump($dio->getBirthDate());
+                preVarDump($jotaro->getBirthDate());
+                ?>
             </div>
         </section>
         
@@ -75,7 +100,10 @@
                 Afficher l'âge des 2 élèves.
             </p>
             <div class="exercice-sandbox">
-                
+            <?php
+                preVarDump( $dio->getAge());
+                preVarDump( $jotaro->getAge());
+                ?>
             </div>
         </section>
         
@@ -88,7 +116,10 @@
                 Ajouter la propriété et ajouter la donnée sur les élèves.
             </p>
             <div class="exercice-sandbox">
-                
+                <?php
+                echo $jotaro->getSchool()."<br>";
+                echo $dio->getSchool();
+                ?>
             </div>
         </section>
         
@@ -102,7 +133,10 @@
                 Afficher la phrase de présentation des 2 élèves.
             </p>
             <div class="exercice-sandbox">
-                
+                <?php
+            echo $jotaro->presentYourself()."<br>";
+                echo $dio->presentYourself();
+                ?>
             </div>
         </section>
 
