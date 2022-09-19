@@ -1,3 +1,18 @@
+<?php
+function preVarDump($value){
+    echo "<pre>";
+    var_dump($value);
+    echo "</pre>";
+
+}
+spl_autoload_register();
+
+use App\Objects\Elementary;
+use App\Objects\School;
+use App\Objects\MiddleSchool;
+use App\Objects\HighSchool;
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -34,7 +49,12 @@
                 Créer 2 écoles et afficher leurs proprités.
             </p>
             <div class="exercice-sandbox">
-                
+                <?php
+                $school1=new School("Robespierre","Le Havre");
+                $school2=new School("Lycée Jules Siegfried","Le Havre");
+                PreVarDump($school1);
+                PreVarDump($school2);
+                ?>
             </div>
         </section>
         
@@ -50,7 +70,14 @@
                 Créer une école de chaque type.
             </p>
             <div class="exercice-sandbox">
-                
+                <?php
+                 $school3=new Elementary("Robespierre","Le Havre");
+                 $school4=new MiddleSchool("Collège Eugène Varlin","Le Havre");
+                 $school5=new HighSchool("Lycée Jules Siegfried","Le Havre");
+                 PreVarDump($school3);
+                 PreVarDump($school4);
+                 PreVarDump($school5);
+                ?>
             </div>
         </section>
 
@@ -64,7 +91,10 @@
                 Tester la méthode créée.
             </p>
             <div class="exercice-sandbox">
-                
+                <?php
+                PreVarDump( $school3->haveGrade("CP"));
+                PreVarDump( $school3->haveGrade("6e"));
+                ?>
             </div>
         </section>
 

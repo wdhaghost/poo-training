@@ -3,9 +3,9 @@ namespace App\Objects;
 abstract class Person{
     public string $firstname;
     public string $lastname;
-    public string $school;
+    public School $school;
 
-    public function __construct(string $firstname, string $lastname,string $school)
+    public function __construct(string $firstname, string $lastname,School $school)
 {
 $this->firstname = $firstname;
 $this->lastname = $lastname;
@@ -23,7 +23,7 @@ public function getLastname():string{
 public function setLastName($firstname):void{
     $this->firstname = $firstname;
 }
-public function getSchool():string{
+public function getSchool():School{
     return $this->school;
   }
 }

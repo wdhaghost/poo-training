@@ -1,7 +1,7 @@
 <?php
 namespace App\Objects;
 spl_autoload_register();
-use App\Objects;
+
 
 class Teacher extends Person {
 
@@ -22,6 +22,7 @@ class Teacher extends Person {
          $this->school= $school;
     }
     public function addCourse(string $course) :void{
+        if(in_array($course,$this->listOfCourse))  return;
         $this->listOfCourse[]=$course;
     }
     public function removeCourse(string $course) :void{

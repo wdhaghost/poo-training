@@ -24,7 +24,7 @@
                 </ul>
             </nav>
         </header>
-        
+
         <!-- QUESTION 1 -->
         <section class="exercice">
             <h2 class="exercice-ttl">Question 1</h2>
@@ -37,25 +37,28 @@
             </p>
             <div class="exercice-sandbox">
                 <?php
-                function preVarDump($value){
+                function preVarDump($value)
+                {
                     echo "<pre>";
                     var_dump($value);
                     echo "</pre>";
-
                 }
                 spl_autoload_register();
 
+                use App\Objects\HighSchool;
+                use App\Objects\MiddleSchool;
+                use App\Objects\Elementary;
                 use App\Objects\Student;
 
-                    $jotaro= new Student("Jotaro","Kujo",new DateTime("1995-12-07"),"Harvard","master");
-                    $dio= new Student("Dio","Brando",new DateTime("1997-10-03"),"Schuman","BTS");
-                   preVarDump($dio);
-                   preVarDump($jotaro);
-                    
+                $jotaro = new Student("Jotaro", "Kujo", new DateTime("1995-12-07"), new Elementary("Harvard", "Japon"), "master");
+                $dio = new Student("Dio", "Brando", new DateTime("1997-10-03"), new HighSchool("Jules Ferry", "Paris"), "BTS");
+                preVarDump($dio);
+                preVarDump($jotaro);
+
                 ?>
             </div>
         </section>
-        
+
         <!-- QUESTION 2 -->
         <section class="exercice">
             <h2 class="exercice-ttl">Question 2</h2>
@@ -69,12 +72,12 @@
                 $jotaro->setCourse("lycéen");
                 $dio->setCourse("lycéen");
                 echo $dio->getCourse();
-                echo"<br>" ;
+                echo "<br>";
                 echo $jotaro->getCourse();
                 ?>
             </div>
         </section>
-        
+
         <!-- QUESTION 3 -->
         <section class="exercice">
             <h2 class="exercice-ttl">Question 3</h2>
@@ -90,7 +93,7 @@
                 ?>
             </div>
         </section>
-        
+
         <!-- QUESTION 4 -->
         <section class="exercice">
             <h2 class="exercice-ttl">Question 4</h2>
@@ -100,13 +103,13 @@
                 Afficher l'âge des 2 élèves.
             </p>
             <div class="exercice-sandbox">
-            <?php
-                preVarDump( $dio->getAge());
-                preVarDump( $jotaro->getAge());
+                <?php
+                preVarDump($dio->getAge());
+                preVarDump($jotaro->getAge());
                 ?>
             </div>
         </section>
-        
+
         <!-- QUESTION 5 -->
         <section class="exercice">
             <h2 class="exercice-ttl">Question 5</h2>
@@ -117,12 +120,12 @@
             </p>
             <div class="exercice-sandbox">
                 <?php
-                echo $jotaro->getSchool()."<br>";
+                echo $jotaro->getSchool() . "<br>";
                 echo $dio->getSchool();
                 ?>
             </div>
         </section>
-        
+
         <!-- QUESTION 6 -->
         <section class="exercice">
             <h2 class="exercice-ttl">Question 6</h2>
@@ -134,7 +137,7 @@
             </p>
             <div class="exercice-sandbox">
                 <?php
-            echo $jotaro->presentYourself()."<br>";
+                echo $jotaro->presentYourself() . "<br>";
                 echo $dio->presentYourself();
                 ?>
             </div>
@@ -143,4 +146,5 @@
     </div>
     <div class="copyright">© Guillaume Belleuvre, 2022 - DWWM Le Havre</div>
 </body>
+
 </html>

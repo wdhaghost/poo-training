@@ -4,7 +4,7 @@ namespace App\Objects;
 
 spl_autoload_register();
 
-use App\Objects;
+
 
 use DateTime;
 
@@ -13,7 +13,7 @@ class Student extends Person {
 public DateTime $birthDate;
 public string $course;
 
-public function __construct(string $firstname,string $lastname,DateTime $birthDate,string $school,string $course)
+public function __construct(string $firstname,string $lastname,DateTime $birthDate,School $school,string $course)
 {
     parent::__construct( $firstname, $lastname, $school);
     $this->birthDate=$birthDate;
