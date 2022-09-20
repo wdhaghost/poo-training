@@ -26,4 +26,6 @@ public function setLastName($firstname):void{
 public function getSchool():School{
     return $this->school;
   }
+
+
 }

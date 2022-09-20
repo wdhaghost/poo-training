@@ -120,9 +120,9 @@
             </p>
             <div class="exercice-sandbox">
                 <?php
-                echo $jotaro->getSchool() . "<br>";
-                echo $dio->getSchool();
-                ?>
+                PreVarDump($jotaro->getSchool()->getName());
+                PreVarDump($dio->getSchool()->getName());
+                                ?>
             </div>
         </section>
 

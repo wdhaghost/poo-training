@@ -1,3 +1,14 @@
+<?php
+    function preVarDump($value)
+    {
+        echo "<pre>";
+        var_dump($value);
+        echo "</pre>";
+    }
+    spl_autoload_register();
+    use App\Views\View;
+    $view = new View("App/Templates/page.html");
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -32,7 +43,9 @@
                 Créer une classe permettant de gérer l'affichage d'un template HTML en lisant un fichier grace à la foncton file_get_contents(). 
             </p>
             <div class="exercice-sandbox">
-                
+                <?php
+                    PreVarDump($view)
+                ?>
             </div>
         </section>
         

@@ -4,7 +4,7 @@ namespace App\Objects;
 
 class HighSchool extends School
 {
-    protected static array $grades = ["6e", "5e", "4e", "3e"];
+    protected static array $grades = ["2nd","1ère","Terminale"];
     public function __construct(string $name, string $city,)
     {
         parent::__construct($name, $city);

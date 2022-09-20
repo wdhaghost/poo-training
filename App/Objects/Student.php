@@ -38,6 +38,6 @@ public function getAge():int{
 }
 
 public function presentYourself():string{
-    return "Bonjour, je m'appelle ".$this->getFirstName()." ".$this->getlastName().", j'ai ".$this->getAge()." ans et je vais à l'école ".$this->getSchool()." en classe de ".$this->getCourse().".";
+    return "Bonjour, je m'appelle ".$this->getFirstName()." ".$this->getlastName().", j'ai ".$this->getAge()." ans et je vais à l'école ".$this->getSchool()->getName()." en classe de ".$this->getCourse().".";
 }
 }

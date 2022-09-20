@@ -3,8 +3,8 @@ namespace App\Objects;
 
 class School{
     /*instances*/
-    public string $name;
-    public string $city;
+    private string $name;
+    private string $city;
     protected static array $grades=[];
     public function __construct(string $name,string $city){
         $this->name=$name;
@@ -15,11 +15,11 @@ class School{
         $this->name=$name;
     }
 
-    public function getName(string $name){
-      return  $this->name=$name;
+    public function getName(){
+      return  $this->name;
     }
 
-    public static function haveGrade(string $grade):string{
+    public  function haveGrade(string $grade):string{
         if(in_array($grade,static::$grades)){
             return "oui";
         }
