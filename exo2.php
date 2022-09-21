@@ -1,3 +1,95 @@
+<?php
+    spl_autoload_register();
+    use App\Objects\School;
+    use App\Objects\Teacher;
+    use App\Objects\HighSchool;
+    use App\Objects\MiddleSchool;
+    use App\Objects\Elementary;
+    use App\Views\Page;
+    use App\Views\Question; 
+    use App\Views\Nav; 
+    $nav= new Nav([
+    ["href"=>"index.php","class"=>"main-nav-link","ttl"=>"Des élèves"],
+    ["href"=>"exo2.php","class"=>"main-nav-link active","ttl"=>"Des profs"],
+    ["href"=>"exo3.php","class"=>"main-nav-link","ttl"=>"On s'organise"],
+    ["href"=>"exo4.php","class"=>"main-nav-link","ttl"=>"Des écoles"],
+    ["href"=>"exo5.php","class"=>"main-nav-link","ttl"=>"Des vues"]
+    ]);
+    
+$pageContent='';
+
+//Question 1
+
+$gyro= new Teacher("Gyro","Zepelli",new Elementary("STB", "USA"));
+$johnny= new Teacher("Johnny","Joestar",new Elementary("Jockey School","Japon"));
+
+$q1=new Question([
+    "number"=>1,
+    "question"=>"Créer une classe permettant de créer des professeurs ayant un nom, un prénom, une liste des matières qu'il enseigne et le nom de l'école où il enseigne.
+    <br>
+    Définir toutes les propriétés à l'instanciation en rendant la liste des matières et le nom de lécole faculative.
+    <br>
+    Créer 2 professeurs différents.",
+    "answer"=>$gyro->getfirstName()." : ".$gyro->getSchool()->getName().",".$gyro->getSchool()->getCity()."<br>".$johnny->getfirstName()." : ".$johnny->getSchool()->getName().",".$johnny->getSchool()->getCity()
+]);
+
+//Question 2
+
+$gyro->getSchool()->setName("STB School");
+$johnny->getSchool()->setName("Wheelchair School");
+
+$q2=new Question([
+    "number"=>2,
+    "question"=>"Créer les getters et les setters permettant de gérer toutes les propriétés des professeurs.
+    <br>
+    Modifier les écoles des 2 professeurs.
+    <br>
+    Afficher les écoles des 2 professeurs.",
+    "answer"=>$gyro->getSchool()->getName()."<br>".$johnny->getSchool()->getName()
+]);
+
+
+//Question 3
+$johnny->addCourse("jockey");
+$johnny->addCourse("how to get Shot 101");
+$johnny->addCourse("Stand fight 101");
+$gyro->addCourse("infinite swag");
+$gyro->addCourse("infinite rotation");
+
+$q3=new Question([
+    "number"=>3,
+    "question"=>"Créer une méthode permettant d'interroger un type d'école pour savoir s'il prend en charge un niveu scolaire.
+    <br>
+    Tester la méthode créée.",
+    "answer"=>$johnny->getListOfCourse()."<br>".$gyro->getListOfCourse()
+]);
+
+//Question 4
+
+$q4=new Question([
+    "number"=>4,
+    "question"=>"Donner la possibilité aux professeurs de se présenter en affichant la phrase suivante :<br>
+    \"Bonjour, je m'appelle XXX XXX et j'enseigne à l'école XXX les matières suivantes : XXX, XXX, XXX.\".
+    <br>
+    Afficher la phrase de présentation des 2 profs.",
+    "answer"=>$gyro->presentYourself()."<br>".$johnny->presentYourself()
+]);
+
+//Display
+
+$pageContent.=$q1->getHtml();
+$pageContent.=$q2->getHtml();
+$pageContent.=$q3->getHtml();
+$pageContent.=$q4->getHtml();
+$page = new Page([
+    'title'=>'POO - Des professeurs',
+    'headerTitle'=>'POO - Des professeur',
+    "nav"=>$nav->buildNav(),
+    'content'=>$pageContent
+]);
+$page->display();
+exit
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -42,12 +134,8 @@
                     var_dump($value);
                     echo "</pre>";
                 }
-                spl_autoload_register();
-
-                use App\Objects\Teacher;
-
-                $gyro= new Teacher("Gyro","Zepelli");
-                $johnny= new Teacher("Johnny","Joestar");
+              
+               
                 PreVarDump($gyro);
                 PreVarDump($johnny);
                 ?>
@@ -67,10 +155,7 @@
             </p>
             <div class="exercice-sandbox">
                 <?php
-                   $gyro->setSchool("STB School");
-                   $johnny->setSchool("Wheelchair School");
-                   echo $gyro->getSchool()."<br>";
-                   echo $johnny->getSchool();
+                   
                 ?>
         
             </div>
@@ -86,14 +171,10 @@
             </p>
             <div class="exercice-sandbox">
             <?php
-                   $johnny->addCourse("jockey");
-                   $johnny->addCourse("how to get Shot 101");
-                   $johnny->addCourse("Stand fight 101");
+                   
                    echo $johnny->getListOfCourse()."<br>";
                    $johnny->removeCourse("jockey");
                    echo $johnny->getListOfCourse()."<br>";
-                   $gyro->addCourse("infinite swag");
-                   $gyro->addCourse("infinite rotation");
                    echo $gyro->getListOfCourse()."<br>";
                    $gyro->removeCourse("infinite swag");
                    echo $gyro->getListOfCourse()."<br>";

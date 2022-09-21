@@ -6,8 +6,51 @@
         echo "</pre>";
     }
     spl_autoload_register();
-    use App\Views\View;
-    $view = new View("App/Templates/page.html");
+    use App\Views\Page;
+    use App\Views\Question;
+    use App\Views\Nav;
+$nav= new Nav([
+    ["href"=>"index.php","class"=>"main-nav-link ","ttl"=>"Des élèves"],
+    ["href"=>"exo2.php","class"=>"main-nav-link","ttl"=>"Des profs"],
+    ["href"=>"exo3.php","class"=>"main-nav-link","ttl"=>"On s'organise"],
+    ["href"=>"exo4.php","class"=>"main-nav-link","ttl"=>"Des écoles"],
+    ["href"=>"exo5.php","class"=>"main-nav-link active","ttl"=>"Des vues"]
+    ]);
+
+    $pageContent='';
+    $q1=new Question([
+        "number"=>1,
+        "question"=>"Créer une classe permettant de gérer l'affichage d'un template HTML en lisant un fichier grace à la fonction file_get_contents(). ",
+        "answer"=>''
+    ]);
+    $q2=new Question([
+        "number"=>2,
+        "question"=>"Créer une classe permettant de gérer l'affichage des pages de ce mini-site. ",
+        "answer"=>''
+    ]);
+    $q3=new Question([
+        "number"=>3,
+        "question"=>"Créer une classe permettant de gérer le menu de navigation de ce site.
+        ",
+        "answer"=>''
+    ]);
+    $q4=new Question([
+        "number"=>4,
+        "question"=>"Créer une classe permettant de gérer l'affichage des questions sur ce site.",
+        "answer"=>''
+    ]);
+    $pageContent.=$q1->getHtml();
+    $pageContent.=$q2->getHtml();
+    $pageContent.=$q3->getHtml();
+    $pageContent.=$q4->getHtml();
+    $page = new Page([
+        'title'=>'POO - Des Vues',
+        'headerTitle'=>'POO - Des Vues',
+        "nav"=>$nav->buildNav(),
+        'content'=>$pageContent
+    ]);
+    $page->display();
+    exit
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -44,7 +87,7 @@
             </p>
             <div class="exercice-sandbox">
                 <?php
-                    PreVarDump($view)
+                    var_dump($view->getFileContent())
                 ?>
             </div>
         </section>

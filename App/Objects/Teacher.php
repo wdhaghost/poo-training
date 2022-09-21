@@ -7,20 +7,15 @@ class Teacher extends Person {
 
     
     public array $listOfCourse=[];
-    public string $school;
-    public function __construct(string $firstname,string $lastname,string $school="",array $listOfCourse=[])
+    public School $school;
+    public function __construct(string $firstname,string $lastname,School $school,array $listOfCourse=[])
     {
         parent::__construct( $firstname, $lastname, $school);
         $this->listOfCourse=$listOfCourse;
         
     }
     
-    public function getSchool() :string{
-        return $this->school;
-    }
-    public function setSchool(string $school) :void{
-         $this->school= $school;
-    }
+
     public function addCourse(string $course) :void{
         if(in_array($course,$this->listOfCourse))  return;
         $this->listOfCourse[]=$course;
@@ -32,7 +27,7 @@ class Teacher extends Person {
         return implode(", ",$this->listOfCourse);
     }
     public function presentYourself():string{
-        return "Bonjour, je m'appelle ".$this->getFirstName()." ".$this->getlastName().", et j'enseigne à l'école ".$this->getSchool()." en classe de ".$this->getListOfCourse().".";
+        return "Bonjour, je m'appelle ".$this->getFirstName()." ".$this->getlastName().", et j'enseigne à l'école ".$this->getSchool()->getName()." en classe de ".$this->getListOfCourse().".";
     }
 }
 ?>

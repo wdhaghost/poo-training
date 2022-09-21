@@ -11,13 +11,13 @@ use DateTime;
 class Student extends Person {
 
 public DateTime $birthDate;
-public string $course;
+public string $grade;
 
-public function __construct(string $firstname,string $lastname,DateTime $birthDate,School $school,string $course)
+public function __construct(string $firstname,string $lastname,DateTime $birthDate,School $school,string $grade)
 {
     parent::__construct( $firstname, $lastname, $school);
     $this->birthDate=$birthDate;
-    $this->course=$course;
+    $this->grade=$grade;
 }
 
 
@@ -27,17 +27,17 @@ public function getBirthDate():DateTime{
 public function setBirthDate(DateTime $birthDate):void{
    $this->birthDate = $birthDate;
 }
-public function getCourse():string{
-    return $this->course;
+public function getGrade():string{
+    return $this->grade;
 }
-public function setCourse($course):void{
-     $this->course = $course;
+public function setGrade($grade):void{
+     $this->grade = $grade;
 }
 public function getAge():int{
   return ($this->birthDate->diff(new DateTime()))->format('%y');
 }
 
 public function presentYourself():string{
-    return "Bonjour, je m'appelle ".$this->getFirstName()." ".$this->getlastName().", j'ai ".$this->getAge()." ans et je vais à l'école ".$this->getSchool()->getName()." en classe de ".$this->getCourse().".";
+    return "Bonjour, je m'appelle ".$this->getFirstName()." ".$this->getlastName().", j'ai ".$this->getAge()." ans et je vais à l'école ".$this->getSchool()->getName()." en classe de ".$this->getGrade().".";
 }
 }

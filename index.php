@@ -1,3 +1,80 @@
+<?php
+function preVarDump($value)
+{
+    echo "<pre>";
+    var_dump($value);
+    echo "</pre>";
+}
+spl_autoload_register();
+
+use App\Objects\HighSchool;
+use App\Objects\MiddleSchool;
+use App\Objects\Elementary;
+use App\Objects\Student;
+use App\Views\Page;
+use App\Views\Question; 
+use App\Views\Nav; 
+$nav= new Nav([
+["href"=>"index.php","class"=>"main-nav-link active","ttl"=>"Des élèves"],
+["href"=>"exo2.php","class"=>"main-nav-link","ttl"=>"Des profs"],
+["href"=>"exo3.php","class"=>"main-nav-link","ttl"=>"On s'organise"],
+["href"=>"exo4.php","class"=>"main-nav-link","ttl"=>"Des écoles"],
+["href"=>"exo5.php","class"=>"main-nav-link","ttl"=>"Des vues"]
+]);
+
+// preVarDump($nav->buildNav());
+//question 1
+
+$jotaro = new Student("Jotaro", "Kujo", new DateTime("1995-12-07"), new Elementary("Stand School", "Mirio"), "master");
+$dio = new Student("Dio", "Brando", new DateTime("1997-10-03"), new HighSchool("Jules Ferry", "Paris"), "BTS");
+
+$q1=new Question([
+    "number"=>1,
+    "question"=>"Créer une classe permettant de créer des élèves ayant un nom, un prénom, un age et un niveau scolaire.
+    <br>
+    Définir toutes les propriétés à l'instanciation.
+    <br>
+    Créer 2 étudiants différents.",
+    "answer"=>$jotaro->getFirstName()." ".$jotaro->getlastName().",".$jotaro->getSchool()->getName()."<br>".$dio->getFirstName()." ".$dio->getlastName().",".$dio->getSchool()->getName()
+]);
+
+//Question 2
+$jotaro->setGrade("lycéen");
+$dio->setGrade("lycéen");
+
+$q2=new Question([
+    "number"=>2,
+    "question"=>"Créer les getters et les setters permettant de manipuler toutes les propriétés des élèves.
+    <br>
+    Modifier le niveau scolaire des 2 élèves et les afficher.",
+    "answer"=>$dio->getGrade()."<br>".$jotaro->getGrade()
+]);
+//Question 3
+
+
+$q3=new Question([
+    "number"=>3,
+    "question"=>"Remplacer la propriété d'âge par la date de naissance de l'élève.
+    <br>
+    Mettez à jour l'instanciation des 2 élèves et afficher leur date de naissance.",
+    "answer"=>$dio->getBirthDate()->format("Y/m/d")."<br>".$jotaro->getBirthDate()->format("Y/m/d")
+]);
+
+//Display
+$pageContent="";
+$pageContent.=$q1->getHtml();
+$pageContent.=$q2->getHtml();
+$pageContent.=$q3->getHtml();
+// $pageContent.=$q4->getHtml();
+$page = new Page([
+    'title'=>'POO - Des élèves',
+    'headerTitle'=>'Programmation Orientée Objet - Des élèves',
+    "nav"=>$nav->buildNav(),
+    'content'=>$pageContent
+]);
+$page->display();
+exit
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -36,22 +113,9 @@
                 Créer 2 étudiants différents.
             </p>
             <div class="exercice-sandbox">
-                <?php
-                function preVarDump($value)
-                {
-                    echo "<pre>";
-                    var_dump($value);
-                    echo "</pre>";
-                }
-                spl_autoload_register();
+                
 
-                use App\Objects\HighSchool;
-                use App\Objects\MiddleSchool;
-                use App\Objects\Elementary;
-                use App\Objects\Student;
-
-                $jotaro = new Student("Jotaro", "Kujo", new DateTime("1995-12-07"), new Elementary("Harvard", "Japon"), "master");
-                $dio = new Student("Dio", "Brando", new DateTime("1997-10-03"), new HighSchool("Jules Ferry", "Paris"), "BTS");
+                
                 preVarDump($dio);
                 preVarDump($jotaro);
 
@@ -68,13 +132,6 @@
                 Modifier le niveau scolaire des 2 élèves et les afficher.
             </p>
             <div class="exercice-sandbox">
-                <?php
-                $jotaro->setCourse("lycéen");
-                $dio->setCourse("lycéen");
-                echo $dio->getCourse();
-                echo "<br>";
-                echo $jotaro->getCourse();
-                ?>
             </div>
         </section>
 
@@ -82,9 +139,7 @@
         <section class="exercice">
             <h2 class="exercice-ttl">Question 3</h2>
             <p class="exercice-txt">
-                Remplacer la propriété d'âge par la date de naissance de l'élève.
-                <br>
-                Mettez à jour l'instanciation des 2 élèves et afficher leur date de naissance.
+                
             </p>
             <div class="exercice-sandbox">
                 <?php

@@ -18,6 +18,13 @@ class School{
     public function getName(){
       return  $this->name;
     }
+    public function setCity(string $city) :void {
+        $this->city=$city;
+    }
+
+    public function getCity(){
+      return  $this->city;
+    }
 
     public  function haveGrade(string $grade):string{
         if(in_array($grade,static::$grades)){

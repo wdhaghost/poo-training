@@ -11,7 +11,77 @@ use App\Objects\Elementary;
 use App\Objects\School;
 use App\Objects\MiddleSchool;
 use App\Objects\HighSchool;
+use App\Views\Page;
+use App\Views\Question;
+use App\Views\Nav;
+$nav= new Nav([
+    ["href"=>"index.php","class"=>"main-nav-link","ttl"=>"Des élèves"],
+    ["href"=>"exo2.php","class"=>"main-nav-link","ttl"=>"Des profs"],
+    ["href"=>"exo3.php","class"=>"main-nav-link","ttl"=>"On s'organise"],
+    ["href"=>"exo4.php","class"=>"main-nav-link active","ttl"=>"Des écoles"],
+    ["href"=>"exo5.php","class"=>"main-nav-link","ttl"=>"Des vues"]
+    ]);
+$pageContent='';
 
+//Question 1
+
+$school1=new School("Robespierre","Le Havre");
+$school2=new School("Lycée Jules Siegfried","Le Havre");
+
+$q1=new Question([
+    "number"=>1,
+    "question"=>"Créer une classe permettant de gérer des écoles avec un nom d'école et une ville.Créer 2 écoles et afficher leurs proprités. ",
+    "answer"=>$school1->getName()." : ".$school1->getCity()
+]);
+
+//Question 2
+
+$school3=new Elementary("Robespierre","Le Havre");
+$school4=new MiddleSchool("Collège Eugène Varlin","Le Havre");
+$school5=new HighSchool("Lycée Jules Siegfried","Le Havre");
+$q2=new Question([
+    "number"=>2,
+    "question"=>"Créer 3 classes correspondants aux 3 types d'école suivants : primaire, des collège et des lycée.<br>
+    Pour chaque type d'école définir la liste des niveaux scolaires qu'il prend en charge (ex de niveau scolaire : \"CP\", \"CM2\", \"5ème\", \"Terminale\", ...).<br>
+    Créer une école de chaque type.",
+    "answer"=>$school3->getName()."<br>".$school4->getName()." <br> ".$school5->getName()
+]);
+
+
+//Question 3
+
+$q3=new Question([
+    "number"=>3,
+    "question"=>"Créer une méthode permettant d'interroger un type d'école pour savoir s'il prend en charge un niveu scolaire.
+    <br>
+    Tester la méthode créée.",
+    "answer"=>$school3->haveGrade("CP")."\n".$school4->haveGrade("CP")
+]);
+
+//Question 4
+
+$q4=new Question([
+    "number"=>4,
+    "question"=>" Remplacer les propriétés \"école\" des élèves et des professeurs par la classe créée.
+    <br>
+    Ajuster le code de toutes les classes afin que tous les exercices précédents fonctionnent à nouveau.",
+    "answer"=>""
+]);
+
+//Display
+
+$pageContent.=$q1->getHtml();
+$pageContent.=$q2->getHtml();
+$pageContent.=$q3->getHtml();
+$pageContent.=$q4->getHtml();
+$page = new Page([
+    'title'=>'POO - Des écoles',
+    'headerTitle'=>'POO - Des écoles',
+    "nav"=>$nav->buildNav(),
+    'content'=>$pageContent
+]);
+$page->display();
+exit
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -71,12 +141,6 @@ use App\Objects\HighSchool;
             </p>
             <div class="exercice-sandbox">
                 <?php
-                 $school3=new Elementary("Robespierre","Le Havre");
-                 $school4=new MiddleSchool("Collège Eugène Varlin","Le Havre");
-                 $school5=new HighSchool("Lycée Jules Siegfried","Le Havre");
-                 PreVarDump($school3);
-                 PreVarDump($school4);
-                 PreVarDump($school5);
                 ?>
             </div>
         </section>
